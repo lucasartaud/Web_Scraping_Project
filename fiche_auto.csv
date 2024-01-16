@@ -1,0 +1,224 @@
+Car Name,Acceleration 0 à 100(Sec),Max Speed (km/h),Cargo Volume (Dm3),Battery (kWh),Autonomie (km)
+Ami (8 ch),0Sec.,45km/h,0Dm3,5.5kWh,70km
+C-Zero (67 ch),15.9Sec.,130km/h,166Dm3,14.5kWh,100km
+Spring (45 ch),19.1Sec.,125km/h,270Dm3,26.8kWh,230km
+Spring (65 ch),13.7Sec.,125km/h,270Dm3,26.8kWh,220km
+500e (95 ch),9.5Sec.,135km/h,185Dm3,21.3kWh,190km
+500e (118 ch),9Sec.,150km/h,185Dm3,37.3kWh,321km
+T03 (109 ch),12Sec.,130km/h,210Dm3,41.3kWh,417km
+Leaf (109 ch),11.5Sec.,144km/h,370Dm3,22kWh,199km (NEDC)
+Ion (67 ch),15.9Sec.,130km/h,166Dm3,14.5kWh,100km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+Twingo III (82 ch),12.9Sec.,135km/h,240Dm3,22kWh,190km
+Zoe (88 ch),13.5Sec.,135km/h,338Dm3,22kWh,210km (NEDC)
+Zoe (77 ch),15.5Sec.,135km/h,338Dm3,41kWh,400km (NEDC)
+Zoe (88 ch),13.2Sec.,135km/h,338Dm3,41kWh,300km
+Zoe (92 ch),13.2Sec.,135km/h,338Dm3,41kWh,317km
+Zoe (108 ch),11.4Sec.,135km/h,338Dm3,41kWh,300km
+Mii EV (83 ch),12.3Sec.,130km/h,251Dm3,32.3kWh,258km
+Fortwo (82 ch),11.5Sec.,130km/h,260Dm3,17.6kWh,135km
+E-Up! (82 ch),12.4Sec.,130km/h,250Dm3,18.7kWh,160km (NEDC)
+E-Up! 2.0 (83 ch),11.9Sec.,130km/h,251Dm3,32.3kWh,258km
+U5 (204 ch),7.8Sec.,160km/h,432Dm3,63kWh,410km
+I3 (170 ch),7.2Sec.,150km/h,260Dm3,18.8kWh,190km (NEDC)
+I3 (170 ch),7.3Sec.,150km/h,260Dm3,27.2kWh,260km
+I3 (170 ch),7.3Sec.,150km/h,260Dm3,37.9kWh,305km
+E-Berlingo (136 ch),11.2Sec.,130km/h,597Dm3,46kWh,280km
+E-Berlingo (136 ch),11.2Sec.,130km/h,850Dm3,46kWh,274km
+Ë-C4 (136 ch),10Sec.,150km/h,380Dm3,46kWh,350km
+Ë-C4 (156 ch),9.3Sec.,150km/h,380Dm3,50.8kWh,420km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+DS3 Crossback (136 ch),8.7Sec.,150km/h,350Dm3,46kWh,320km
+600e (156 ch),9Sec.,150km/h,360Dm3,50.8kWh,409km
+Honda-e (136 ch),9Sec.,145km/h,171Dm3,28.5kWh,222km
+Honda-e (154 ch),8.3Sec.,145km/h,171Dm3,28.5kWh,210km
+Ioniq (120 ch),9.9Sec.,165km/h,350Dm3,28kWh,280km (NEDC)
+Ioniq (136 ch),9.9Sec.,165km/h,357Dm3,38.3kWh,311km
+Kona (136 ch),9.7Sec.,155km/h,332Dm3,39.2kWh,289km
+Kona (136 ch),9.9Sec.,155km/h,332Dm3,39.2kWh,305km
+Kona (204 ch),7.9Sec.,167km/h,332Dm3,64kWh,484km
+Avenger (156 ch),9Sec.,150km/h,355Dm3,50.8kWh,392km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+E-Niro (136 ch),9.8Sec.,155km/h,451Dm3,39.2kWh,289km
+E-Soul (136 ch),9.9Sec.,155km/h,224Dm3,39.2kWh,277km
+Soul (110 ch),11.2Sec.,145km/h,281Dm3,27kWh,212km (NEDC)
+Soul (110 ch),11.3Sec.,145km/h,281Dm3,30kWh,250km (NEDC)
+MX-30 (145 ch),9.7Sec.,140km/h,366Dm3,35.5kWh,200km
+Marvel R (180 ch),7.9Sec.,200km/h,357Dm3,66kWh,402km
+MG5 (130 ch),8.3Sec.,185km/h,479Dm3,48kWh,320km
+MG5 (115 ch),8.3Sec.,185km/h,479Dm3,59kWh,400km
+ZS (177 ch),8.6Sec.,175km/h,488Dm3,51kWh,320km
+ZS (156 ch),8.6Sec.,175km/h,488Dm3,72kWh,440km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+Mini E (184 ch),7.3Sec.,150km/h,211Dm3,28.9kWh,234km
+Leaf (109 ch),11.5Sec.,144km/h,370Dm3,28kWh,250km (NEDC)
+Leaf II (150 ch),7.9Sec.,144km/h,435Dm3,37.5kWh,270km
+Corsa-e (136 ch),8.1Sec.,150km/h,309Dm3,46kWh,322km
+Corsa-e (156 ch),8.1Sec.,150km/h,309Dm3,48.1kWh,402km
+Mokka-e (136 ch),9.1Sec.,150km/h,392Dm3,46kWh,342km
+E-2008 (136 ch),9Sec.,150km/h,405Dm3,46kWh,320km
+E-208 (136 ch),8.3Sec.,150km/h,309Dm3,46kWh,340km
+E-Rifter (136 ch),11.2Sec.,130km/h,597Dm3,46kWh,282km
+Megane e-Tech (130 ch),10Sec.,150km/h,440Dm3,40kWh,300km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+Scenic E-Tech (170 ch),8.6Sec.,150km/h,545Dm3,60kWh,430km
+Zoe II (108 ch),11.4Sec.,135km/h,338Dm3,52kWh,395km
+Zoe II (135 ch),9.5Sec.,140km/h,338Dm3,52kWh,386km
+Enyaq (150 ch),11.3Sec.,160km/h,585Dm3,52kWh,362km
+#1 (272 ch),6.7Sec.,180km/h,323Dm3,62kWh,440km
+E-Golf (115 ch),10.4Sec.,140km/h,341Dm3,24.2kWh,190km (NEDC)
+E-Golf (136 ch),9.6Sec.,150km/h,341Dm3,32kWh,230km
+ID3 (150 ch),8.9Sec.,160km/h,385Dm3,45kWh,350km
+ID3 (145 ch),9.6Sec.,160km/h,385Dm3,58kWh,417km
+EX30 (272 ch),6Sec.,180km/h,318Dm3,49kWh,344km
+Q4 E-Tron (170 ch),9Sec.,160km/h,535Dm3,52kWh,336km
+Q4 E-Tron (204 ch),8.5Sec.,160km/h,535Dm3,77kWh,513km
+Q4 E-Tron Sportback (170 ch),9Sec.,160km/h,535Dm3,52kWh,341km
+I3 (184 ch),6.9Sec.,160km/h,260Dm3,27.2kWh,240km
+I3 (184 ch),6.9Sec.,160km/h,260Dm3,37.9kWh,283km
+Born (204 ch),7.3Sec.,160km/h,385Dm3,58kWh,424km
+Born (230 ch),6.6Sec.,160km/h,385Dm3,58kWh,417km
+DS3 Crossback (156 ch),9Sec.,150km/h,350Dm3,50.8kWh,404km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+Mustang Mach-e (269 ch),6.9Sec.,180km/h,519Dm3,68kWh,440km
+E:NY1 (204 ch),7.6Sec.,160km/h,344Dm3,62kWh,412km
+Ioniq 5 (170 ch),8.5Sec.,185km/h,527Dm3,54kWh,384km
+Ioniq 5 (218 ch),7.4Sec.,185km/h,527Dm3,70kWh,481km
+Ioniq 5 (229 ch),7.3Sec.,185km/h,527Dm3,72.6kWh,507km
+Kona (204 ch),7.6Sec.,167km/h,332Dm3,64kWh,449km
+Kona 2 (156 ch),8.8Sec.,162km/h,466Dm3,48.4kWh,377km
+Kona 2 (217 ch),7.8Sec.,172km/h,466Dm3,65.4kWh,514km
+E-Niro (204 ch),7.8Sec.,167km/h,451Dm3,64kWh,455km
+E-Soul (204 ch),7.9Sec.,167km/h,224Dm3,64kWh,452km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+EV6 (170 ch),8.5Sec.,185km/h,490Dm3,54kWh,394km
+EV6 (229 ch),7.5Sec.,185km/h,490Dm3,72.5kWh,528km
+Niro EV (204 ch),7.8Sec.,167km/h,475Dm3,64.8kWh,463km
+UX (204 ch),7.5Sec.,160km/h,367Dm3,54.3kWh,313km
+EQA (190 ch),8.6Sec.,160km/h,340Dm3,66.5kWh,426km
+Ariya (218 ch),7.5Sec.,160km/h,468Dm3,63kWh,403km
+Leaf II (217 ch),7.3Sec.,157km/h,435Dm3,56.5kWh,385km
+E-2008 (156 ch),9.1Sec.,150km/h,434Dm3,48.1kWh,406km
+E-2008 (136 ch),9.9Sec.,150km/h,434Dm3,46kWh,340km
+E-208 (156 ch),8.2Sec.,150km/h,309Dm3,48.1kWh,398km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+E-308 (156 ch),10.5Sec.,170km/h,412Dm3,50.8kWh,413km
+E-Rifter (136 ch),11.2Sec.,130km/h,850Dm3,46kWh,276km
+2 (272 ch),6.4Sec.,205km/h,405Dm3,67kWh,546km
+Megane e-Tech (220 ch),7.4Sec.,160km/h,440Dm3,60kWh,450km
+Scenic E-Tech (220 ch),7.9Sec.,170km/h,545Dm3,87kWh,625km
+Enyaq (180 ch),8.8Sec.,160km/h,585Dm3,58kWh,412km
+Enyaq (204 ch),8.7Sec.,160km/h,585Dm3,77kWh,534km
+#1 (428 ch),3.9Sec.,180km/h,323Dm3,62kWh,400km
+Model 3 (276 ch),6.1Sec.,201km/h,528Dm3,57.5kWh,513km
+Model Y (276 ch),6.9Sec.,217km/h,700Dm3,57.5kWh,455km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+Model Y (276 ch),6.9Sec.,217km/h,700Dm3,55.5kWh,455km
+ID Buzz (204 ch),10.2Sec.,145km/h,1121Dm3,77kWh,416km
+ID3 (204 ch),7.3Sec.,160km/h,385Dm3,58kWh,417km
+ID3 (204 ch),7.9Sec.,160km/h,385Dm3,77kWh,545km
+ID4 (149 ch),10.9Sec.,160km/h,543Dm3,52kWh,359km
+ID4 (170 ch),9Sec.,160km/h,543Dm3,52kWh,359km
+ID4 (174 ch),10.4Sec.,160km/h,543Dm3,77kWh,526km
+ID4 (204 ch),8.5Sec.,160km/h,543Dm3,77kWh,526km
+ID4 (170 ch),9Sec.,160km/h,543Dm3,52kWh,364km
+ID4 (286 ch),6.7Sec.,180km/h,543Dm3,77kWh,550km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+ID4 (286 ch),6.6Sec.,180km/h,543Dm3,77kWh,530km
+EX30 (272 ch),5.3Sec.,180km/h,318Dm3,65kWh,480km
+EX30 (428 ch),4Sec.,180km/h,318Dm3,65kWh,460km
+XC40 (231 ch),7.4Sec.,160km/h,452Dm3,67kWh,425km
+Q4 E-Tron (265 ch),6.9Sec.,180km/h,535Dm3,77kWh,481km
+Q4 E-Tron Sportback (204 ch),8.5Sec.,160km/h,535Dm3,77kWh,522km
+I4 (340 ch),5.7Sec.,190km/h,470Dm3,80.7kWh,590km
+I4 (286 ch),6Sec.,190km/h,470Dm3,66kWh,483km
+IX2 (313 ch),5.6Sec.,180km/h,525Dm3,64.8kWh,449km
+E-Ulysse (136 ch),10.8Sec.,130km/h,1556Dm3,46kWh,226km
+Mustang Mach-e (294 ch),7Sec.,180km/h,519Dm3,88kWh,610km
+Mustang Mach-e (269 ch),6.3Sec.,180km/h,519Dm3,68kWh,400km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+Ioniq 5 (306 ch),5.2Sec.,185km/h,527Dm3,70kWh,460km
+EV6 (325 ch),5.4Sec.,185km/h,490Dm3,72.5kWh,506km
+EQA (190 ch),8.6Sec.,160km/h,340Dm3,70.5kWh,489km
+Marvel R (289 ch),4.9Sec.,200km/h,357Dm3,66kWh,370km
+Ariya (242 ch),7.6Sec.,160km/h,468Dm3,87kWh,520km
+E-Traveler (136 ch),10.8Sec.,130km/h,1556Dm3,46kWh,230km
+E-Traveler (136 ch),10.8Sec.,130km/h,1950Dm3,46kWh,230km
+2 (299 ch),6.2Sec.,205km/h,405Dm3,79kWh,655km
+Enyaq (265 ch),6.9Sec.,160km/h,585Dm3,77kWh,495km
+Enyaq (285 ch),6.7Sec.,160km/h,585Dm3,77kWh,565km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+Enyaq (285 ch),6.9Sec.,160km/h,585Dm3,77kWh,537km
+Model 3 (441 ch),4.4Sec.,233km/h,495Dm3,74kWh,560km
+Model 3 (513 ch),3.2Sec.,233km/h,495Dm3,74kWh,530km
+Model 3 (276 ch),6.1Sec.,225km/h,495Dm3,57.5kWh,491km
+Model 3 (441 ch),4.4Sec.,201km/h,528Dm3,75kWh,678km
+Model Y (441 ch),5Sec.,217km/h,700Dm3,77kWh,533km
+Model Y (513 ch),3.7Sec.,250km/h,700Dm3,77kWh,514km
+Model Y (441 ch),5Sec.,217km/h,700Dm3,75kWh,533km
+Model Y (513 ch),3.7Sec.,250km/h,700Dm3,75kWh,514km
+ID4 (299 ch),6.2Sec.,180km/h,543Dm3,77kWh,499km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+C40 (238 ch),7.4Sec.,180km/h,413Dm3,67kWh,477km
+C40 (252 ch),7.4Sec.,180km/h,413Dm3,78kWh,582km
+XC40 (408 ch),4.9Sec.,180km/h,452Dm3,75kWh,438km
+Q4 E-Tron (299 ch),6.2Sec.,180km/h,535Dm3,77kWh,478km
+Q4 E-Tron Sportback (265 ch),6.9Sec.,180km/h,535Dm3,77kWh,487km
+Q4 E-Tron Sportback (299 ch),6.2Sec.,180km/h,535Dm3,77kWh,485km
+IX3 (286 ch),6.8Sec.,180km/h,510Dm3,74kWh,461km
+E-Ulysse (136 ch),11.9Sec.,130km/h,1556Dm3,68kWh,323km
+E-Ulysse (136 ch),11.9Sec.,130km/h,1950Dm3,68kWh,303km
+Mustang Mach-e (351 ch),5.8Sec.,180km/h,519Dm3,88kWh,540km
+Ioniq 5 (325 ch),5.1Sec.,185km/h,527Dm3,72.6kWh,481km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+EV6 (585 ch),3.5Sec.,260km/h,490Dm3,72.5kWh,406km
+EQA (292 ch),6Sec.,160km/h,340Dm3,66.5kWh,434km
+EQB (228 ch),8Sec.,160km/h,465Dm3,66.5kWh,395km
+EQB (292 ch),6.2Sec.,160km/h,465Dm3,66.5kWh,395km
+Ariya (306 ch),5.7Sec.,200km/h,415Dm3,87kWh,493km
+E-Traveler (136 ch),11.9Sec.,130km/h,1556Dm3,68kWh,330km
+E-Traveler (136 ch),11.9Sec.,130km/h,1950Dm3,68kWh,330km
+2 (421 ch),4.5Sec.,205km/h,405Dm3,79kWh,593km
+2 (476 ch),4.2Sec.,205km/h,405Dm3,79kWh,568km
+Enyaq (340 ch),6.4Sec.,180km/h,585Dm3,77kWh,541km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+Model 3 (441 ch),4.4Sec.,233km/h,495Dm3,77kWh,602km
+Model 3 (513 ch),3.2Sec.,233km/h,495Dm3,77kWh,547km
+ID4 (340 ch),6.4Sec.,180km/h,543Dm3,77kWh,514km
+C40 (408 ch),4.9Sec.,180km/h,413Dm3,78kWh,550km
+E-tron (313 ch),6.8Sec.,190km/h,600Dm3,64.7kWh,339km
+E-tron Sportback (313 ch),6.8Sec.,190km/h,600Dm3,64.7kWh,346km
+I4 (544 ch),3.9Sec.,225km/h,470Dm3,80.7kWh,520km
+I5 (340 ch),6Sec.,193km/h,490Dm3,81.2kWh,581km
+Mustang Mach-e (487 ch),3.7Sec.,180km/h,519Dm3,88kWh,500km
+I-Pace (400 ch),4.8Sec.,200km/h,505Dm3,84.7kWh,480km
+I-Pace (320 ch),6.4Sec.,180km/h,505Dm3,84.7kWh,470km
+EQC (408 ch),5.1Sec.,180km/h,500Dm3,80kWh,475km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+EQE (245 ch),7.3Sec.,210km/h,430Dm3,90kWh,639km
+EQE (292 ch),6.4Sec.,210km/h,430Dm3,90kWh,639km
+EQV (204 ch),12.1Sec.,160km/h,1030Dm3,90kWh,353km
+EQV (204 ch),12.2Sec.,160km/h,1410Dm3,90kWh,351km
+E-tron (360 ch),5.7Sec.,200km/h,600Dm3,86kWh,437km
+E-tron Sportback (360 ch),5.7Sec.,200km/h,600Dm3,86kWh,446km
+IX (326 ch),6.1Sec.,200km/h,500Dm3,71kWh,425km
+E-tron (503 ch),4.5Sec.,210km/h,600Dm3,86kWh,372km
+E-Tron GT (598 ch),3.3Sec.,250km/h,350Dm3,87.3kWh,465km
+E-tron Sportback (503 ch),4.5Sec.,210km/h,600Dm3,86kWh,378km
+I5 (601 ch),3.8Sec.,230km/h,490Dm3,81.2kWh,581km
+IX (523 ch),4.6Sec.,200km/h,500Dm3,105.2kWh,720km
+Taycan (435 ch),4Sec.,250km/h,407Dm3,71kWh,407km
+Taycan (490 ch),4Sec.,250km/h,407Dm3,83.7kWh,463km
+Taycan Cross Turismo (380 ch),5.1Sec.,220km/h,446Dm3,83.7kWh,456km
+,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+Taycan Cross Turismo (490 ch),4.1Sec.,240km/h,446Dm3,83.7kWh,452km
+Model S (520 ch),4.4Sec.,250km/h,650Dm3,93kWh,652km
+Model X (760 ch),4.6Sec.,250km/h,720Dm3,93kWh,507km
+E-Tron GT (476 ch),4.1Sec.,245km/h,405Dm3,87.3kWh,488km
+IX (540 ch),3.8Sec.,250km/h,500Dm3,105.2kWh,720km
+EQS (333 ch),6.2Sec.,210km/h,610Dm3,107.8kWh,729km
+EQS (523 ch),4.3Sec.,210km/h,610Dm3,107.8kWh,651km
+Taycan (625 ch),3.2Sec.,260km/h,366Dm3,83.7kWh,450km
+Taycan (625 ch),2.8Sec.,260km/h,366Dm3,83.7kWh,412km
+Taycan Cross Turismo (625 ch),3.3Sec.,250km/h,405Dm3,83.7kWh,452km
+Taycan Cross Turismo (625 ch),2.9Sec.,250km/h,405Dm3,83.7kWh,419km
