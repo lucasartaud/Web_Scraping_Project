@@ -24,24 +24,42 @@ st.markdown(
             margin-left: auto;
             margin-right: auto;
         }
-        .text-comments {
-            font-size: 20px; 
+        h1 {
+            font-size: 80px;
+            text-align: center;
+            color:#3E9DF3;
+        }
+        h2 {
+            font-size: 50px;
+            text-align: center;
+            color:#9A5DFB;
+        }
+        h3 {
+            font-size: 40px;
+        }
+        h4 {
+            font-size: 30px;
+            text-align: center;
+        }
+        p {
+            font-size: 20px;
+            text-align: center;
         }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-st.sidebar.header("Pages")
+st.sidebar.write(f"<h3>Pages</h3>", unsafe_allow_html=True)
 selected_page = st.sidebar.selectbox("Sélectionner une page", ["Accueil", "Filtres", "Carte"])
 
 if selected_page == "Accueil":
-    st.write("<h1 style='text-align: center; color:#3E9DF3; font-size: 80px;'>Projet Web Scraping</h1>", unsafe_allow_html=True)
-    st.write("<h2 style='text-align: center; color:#9A5DFB; font-size: 50px;'>Lucas Artaud & Iswarya Sivasubramaniam DIA 1</h2>", unsafe_allow_html=True)
-    st.write("<h3 style='text-align: center;'>Veuillez sélectionner une page en haut à gauche.</h3>", unsafe_allow_html=True)
+    st.write("<h1>Projet Web Scraping</h1>", unsafe_allow_html=True)
+    st.write("<h2>Lucas Artaud & Iswarya Sivasubramaniam DIA 1</h2>", unsafe_allow_html=True)
+    st.write("<h3>Le but de notre projet est, dans un premier temps, de répertorier les voitures électriques des différentes marques avec leur caractéristiques et donner la possibilité à l’utilisateur de naviguer et découvrir les différents modèles. À partir de ces données, nous allons conseiller aux utilisateurs la voiture adaptée à leurs besoins. L’utilisateur pourra renseigner ses critères, comme par exemple la catégorie, le budget, l’utilisation, la consommation, l’autonomie et l’empreinte carbone, et nous lui proposerons le véhicule le plus adapté. Veuillez sélectionner une page en haut à gauche.</h3>", unsafe_allow_html=True)
 
 elif selected_page == "Filtres":
-    st.sidebar.header("Filtres")
+    st.sidebar.write(f"<h3>Filtres</h3>", unsafe_allow_html=True)
 
     # Brand:
     enabled_brand = st.sidebar.checkbox("Activer le filtre par marque")
@@ -84,29 +102,35 @@ elif selected_page == "Filtres":
     min_weight, max_weight = st.sidebar.slider("Filtrer par poids (kg)", min_possible_weight, max_possible_weight, (min_possible_weight, max_possible_weight))
     df_filtered_weight = df.query(f'not (`Poids (kg) min` > {max_weight} or `Poids (kg) max` < {min_weight}) and not (`Poids (kg) min`.isnull() and `Poids (kg) max`.isnull())')
 
-    # Surface:
-    df['Surface (m2)'] = df['Longueur (mm)'] * df['Largeur (mm)'] / 1000000
-    min_possible_surface = float(df['Surface (m2)'].min())
-    max_possible_surface = float(df['Surface (m2)'].max())
-    min_surface, max_surface = st.sidebar.slider("Filtrer par surface (m²)", min_possible_surface, max_possible_surface, (min_possible_surface, max_possible_surface))
-    df_filtered_surface = df.query(f'{min_surface} <= `Surface (m2)` and `Surface (m2)` <= {max_surface} and not `Surface (m2)`.isnull()')
+    # Length:
+    min_possible_length = float(df['Longueur (mm)'].min())
+    max_possible_length = float(df['Longueur (mm)'].max())
+    min_length, max_length = st.sidebar.slider("Filtrer par longueur (mm)", min_possible_length, max_possible_length, (min_possible_length, max_possible_length))
+    df_filtered_length = df.query(f'{min_length} <= `Longueur (mm)` and `Longueur (mm)` <= {max_length} and not `Longueur (mm)`.isnull()')
+
+    # Width:
+    min_possible_width = float(df['Largeur (mm)'].min())
+    max_possible_width = float(df['Largeur (mm)'].max())
+    min_width, max_width = st.sidebar.slider("Filtrer par largeur (mm)", min_possible_width, max_possible_width, (min_possible_width, max_possible_width))
+    df_filtered_width = df.query(f'{min_width} <= `Largeur (mm)` and `Largeur (mm)` <= {max_width} and not `Largeur (mm)`.isnull()')
 
     # Final:
-    df_filtered_final = pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(df_filtered_brand, df_filtered_price, how='inner'), df_filtered_acceleration, how='inner'), df_filtered_battery, how='inner'), df_filtered_speed, how='inner'), df_filtered_autonomy, how='inner'), df_filtered_weight, how='inner'), df_filtered_surface, how='inner')
+    df_filtered_final = pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(df_filtered_brand, df_filtered_price, how='inner'), df_filtered_acceleration, how='inner'), df_filtered_battery, how='inner'), df_filtered_speed, how='inner'), df_filtered_autonomy, how='inner'), df_filtered_weight, how='inner'), df_filtered_length, how='inner'), df_filtered_width, how='inner')
 
-    st.header('Résultats du filtrage', divider='blue')    
+    st.write(f"<h2>Résultats du filtrage</h2>", unsafe_allow_html=True)
     col1, col2, col3, col4 = st.columns(4)
     for index, row in df_filtered_final.iterrows():
         with col1 if index % 4 == 0 else col2 if index % 4 == 1 else col3 if index % 4 == 2 else col4:
             st.image(f'images/{row["Modèle"]}.jpg', use_column_width=True)
-            st.write(f"<h3 style='text-align: center;'>{row['Modèle']}</p>", unsafe_allow_html=True)
-            st.write(f"<h5 style='text-align: center;'>{text('Prix', row['Prix (euros) min'], row['Prix (euros) max'], 'euros')}</p>", unsafe_allow_html=True)
-            st.write(f"<h5 style='text-align: center;'>{text('Accélération de 0 à 100 km/h', row['Accélération de 0 à 100 km/h (s) min'], row['Accélération de 0 à 100 km/h (s) min'], 'secondes')}</p>", unsafe_allow_html=True)
-            st.write(f"<h5 style='text-align: center;'>{text('Puissance de la batterie', row['Puissance de la batterie (kWh) min'], row['Puissance de la batterie (kWh) max'], 'kWh')}</p>", unsafe_allow_html=True)
-            st.write(f"<h5 style='text-align: center;'>{text('Vitesse maximale', row['Vitesse maximale (km/h) min'], row['Vitesse maximale (km/h) max'], 'km/h')}</p>", unsafe_allow_html=True)
-            st.write(f"<h5 style='text-align: center;'>{text('Autonomie', row['Autonomie (km) min'], row['Autonomie (km) max'], 'km')}</p>", unsafe_allow_html=True)
-            st.write(f"<h5 style='text-align: center;'>{text('Poids', row['Poids (kg) min'], row['Poids (kg) max'], 'kg')}</p>", unsafe_allow_html=True)
-            st.write(f"<h5 style='text-align: center;'>{'Surface : ' + str(row['Surface (m2)']) + ' m²'}</p>", unsafe_allow_html=True)
+            st.write(f"<h4>{row['Modèle']}</h4>", unsafe_allow_html=True)
+            st.write(f"<p>{text('Prix', row['Prix (euros) min'], row['Prix (euros) max'], 'euros')}</p>", unsafe_allow_html=True)
+            st.write(f"<p>{text('Accélération de 0 à 100 km/h', row['Accélération de 0 à 100 km/h (s) min'], row['Accélération de 0 à 100 km/h (s) min'], 'secondes')}</p>", unsafe_allow_html=True)
+            st.write(f"<p>{text('Puissance de la batterie', row['Puissance de la batterie (kWh) min'], row['Puissance de la batterie (kWh) max'], 'kWh')}</p>", unsafe_allow_html=True)
+            st.write(f"<p>{text('Vitesse maximale', row['Vitesse maximale (km/h) min'], row['Vitesse maximale (km/h) max'], 'km/h')}</p>", unsafe_allow_html=True)
+            st.write(f"<p>{text('Autonomie', row['Autonomie (km) min'], row['Autonomie (km) max'], 'km')}</p>", unsafe_allow_html=True)
+            st.write(f"<p>{text('Poids', row['Poids (kg) min'], row['Poids (kg) max'], 'kg')}</p>", unsafe_allow_html=True)
+            st.write(f"<p>{'Longueur : ' + str(row['Longueur (mm)']) + ' mm'}</p>", unsafe_allow_html=True)
+            st.write(f"<p>{'Largeur : ' + str(row['Largeur (mm)']) + ' mm'}</p>", unsafe_allow_html=True)
 
 elif selected_page == "Carte":
     with open("consolidation-etalab-schema-irve-statique-v-2.2.0-20240116.json", "r") as file:
@@ -133,5 +157,5 @@ elif selected_page == "Carte":
     fig.update_layout(mapbox_style='open-street-map', height=800)
 
     # Display of the map
-    st.header('Carte des stations de recharge électrique', divider='blue')
+    st.write(f"<h2>Carte des stations de recharge électrique</h2>", unsafe_allow_html=True)
     st.plotly_chart(fig, use_container_width=True)
