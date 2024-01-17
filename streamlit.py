@@ -4,6 +4,16 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+def text(name, min, max, measure):
+    if pd.isna(max):
+        return f'{name} : à partir de {min} {measure}'
+    elif pd.isna(min):
+        return f'{name} : moins de {max} {measure}'
+    elif min == max:
+        return f'{name} : {min} {measure}'
+    else:
+        return f'{name} : de {min} à {max} {measure}'
+
 df = pd.read_csv('lunil.csv')
 
 st.markdown(
@@ -101,9 +111,14 @@ if st.sidebar.selectbox("Sélectionner une page", ["Filtres", "Carte"]) == "Filt
     for index, row in df_filtered_final.iterrows():
         with col1 if index % 4 == 0 else col2 if index % 4 == 1 else col3 if index % 4 == 2 else col4:
             st.image(f'images/{row["Modèle"]}.jpg', use_column_width=True)
-            st.write(row["Modèle"])
-
-
+            st.write(f"<p style='text-align: center;'>{row['Modèle']}</p>", unsafe_allow_html=True)
+            st.write(f"<p style='text-align: center;'>{text('Prix', row['Prix (euros) min'], row['Prix (euros) max'], 'euros')}</p>", unsafe_allow_html=True)
+            st.write(f"<p style='text-align: center;'>{text('Accélération de 0 à 100 km/h', row['Accélération de 0 à 100 km/h (s) min'], row['Accélération de 0 à 100 km/h (s) min'], 'secondes')}</p>", unsafe_allow_html=True)
+            st.write(f"<p style='text-align: center;'>{text('Puissance de la batterie', row['Puissance de la batterie (kWh) min'], row['Puissance de la batterie (kWh) max'], 'kWh')}</p>", unsafe_allow_html=True)
+            st.write(f"<p style='text-align: center;'>{text('Vitesse maximale', row['Vitesse maximale (km/h) min'], row['Vitesse maximale (km/h) max'], 'km/h')}</p>", unsafe_allow_html=True)
+            st.write(f"<p style='text-align: center;'>{text('Autonomie', row['Autonomie (km) min'], row['Autonomie (km) max'], 'km')}</p>", unsafe_allow_html=True)
+            st.write(f"<p style='text-align: center;'>{text('Poids', row['Poids (kg) min'], row['Poids (kg) max'], 'kg')}</p>", unsafe_allow_html=True)
+            st.write(f"<p style='text-align: center;'>{'Surface : ' + str(row['Surface (m2)']) + ' m²'}</p>", unsafe_allow_html=True)
 
 else:
     with open("consolidation-etalab-schema-irve-statique-v-2.2.0-20240116.json", "r") as file:
