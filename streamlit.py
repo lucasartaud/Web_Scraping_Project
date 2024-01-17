@@ -1,5 +1,10 @@
+import json
+import folium
 import streamlit as st
 import pandas as pd
+import plotly.express as px
+from folium import plugins
+from streamlit_folium import folium_static
 
 df = pd.read_csv('lunil.csv')
 
@@ -91,3 +96,30 @@ df_filtered_surface = df.query(f'{min_surface} <= `Surface (m2)` and `Surface (m
 
 df_filtered_final = pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(df_filtered_brand, df_filtered_price, how='inner'), df_filtered_acceleration, how='inner'), df_filtered_battery, how='inner'), df_filtered_speed, how='inner'), df_filtered_autonomy, how='inner'), df_filtered_weight, how='inner'), df_filtered_surface, how='inner')
 st.dataframe(df_filtered_final)
+
+with open("consolidation-etalab-schema-irve-statique-v-2.2.0-20240116.json", "r") as file:
+    data = json.load(file)
+
+# Création d'un DataFrame avec les données des stations
+stations = []
+for feature in data['features']:
+    coordinates = feature['geometry']['coordinates']
+    name = feature['properties']['nom_station']
+    stations.append({'Name': name, 'Latitude': coordinates[1], 'Longitude': coordinates[0]})
+
+df_stations = pd.DataFrame(stations)
+
+# Création d'une carte avec plotly express
+fig = px.scatter_mapbox(df_stations, 
+                        lat='Latitude', 
+                        lon='Longitude', 
+                        text='Name', 
+                        hover_name='Name',
+                        zoom=5,
+                        title='Carte des Stations de Recharge Électrique')
+
+# Configuration du style de la carte
+fig.update_layout(mapbox_style='open-street-map')
+
+# Affichage de la carte dans Streamlit
+st.plotly_chart(fig)
