@@ -1,4 +1,5 @@
 import json
+import os
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -95,7 +96,14 @@ if st.sidebar.selectbox("Sélectionner une page", ["Filtres", "Carte"]) == "Filt
 
     df_filtered_final = pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(df_filtered_brand, df_filtered_price, how='inner'), df_filtered_acceleration, how='inner'), df_filtered_battery, how='inner'), df_filtered_speed, how='inner'), df_filtered_autonomy, how='inner'), df_filtered_weight, how='inner'), df_filtered_surface, how='inner')
     st.header('Résultats du filtrage', divider='blue')    
-    st.dataframe(df_filtered_final)
+    # st.dataframe(df_filtered_final)
+    col1, col2, col3, col4 = st.columns(4)
+    for index, row in df_filtered_final.iterrows():
+        with col1 if index % 4 == 0 else col2 if index % 4 == 1 else col3 if index % 4 == 2 else col4:
+            st.image(f'images/{row["Modèle"]}.jpg', use_column_width=True)
+            st.write(row["Modèle"])
+
+
 
 else:
     with open("consolidation-etalab-schema-irve-statique-v-2.2.0-20240116.json", "r") as file:
@@ -124,4 +132,3 @@ else:
     # Affichage de la carte dans Streamlit
     st.header('Carte des stations de recharge électrique', divider='blue')
     st.plotly_chart(fig)
-    
