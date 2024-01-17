@@ -1,10 +1,7 @@
 import json
-import folium
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from folium import plugins
-from streamlit_folium import folium_static
 
 df = pd.read_csv('lunil.csv')
 
