@@ -32,11 +32,15 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.write("<h1 style='text-align: center; color:#3E9DF3; font-size: 80px;'>Projet Web Scraping</h1>", unsafe_allow_html=True)
-st.write("<h2 style='text-align: center; color:#9A5DFB; font-size: 50px;'>Lucas Artaud & Iswarya Sivasubramaniam DIA 1</h2>", unsafe_allow_html=True)
-
 st.sidebar.header("Pages")
-if st.sidebar.selectbox("Sélectionner une page", ["Filtres", "Carte"]) == "Filtres":
+selected_page = st.sidebar.selectbox("Sélectionner une page", ["Accueil", "Filtres", "Carte"])
+
+if selected_page == "Accueil":
+    st.write("<h1 style='text-align: center; color:#3E9DF3; font-size: 80px;'>Projet Web Scraping</h1>", unsafe_allow_html=True)
+    st.write("<h2 style='text-align: center; color:#9A5DFB; font-size: 50px;'>Lucas Artaud & Iswarya Sivasubramaniam DIA 1</h2>", unsafe_allow_html=True)
+    st.write("<h3 style='text-align: center;'>Veuillez sélectionner une page en haut à gauche.</h3>", unsafe_allow_html=True)
+
+elif selected_page == "Filtres":
     st.sidebar.header("Filtres")
 
     # Brand:
@@ -104,7 +108,7 @@ if st.sidebar.selectbox("Sélectionner une page", ["Filtres", "Carte"]) == "Filt
             st.write(f"<h5 style='text-align: center;'>{text('Poids', row['Poids (kg) min'], row['Poids (kg) max'], 'kg')}</p>", unsafe_allow_html=True)
             st.write(f"<h5 style='text-align: center;'>{'Surface : ' + str(row['Surface (m2)']) + ' m²'}</p>", unsafe_allow_html=True)
 
-else:
+elif selected_page == "Carte":
     with open("consolidation-etalab-schema-irve-statique-v-2.2.0-20240116.json", "r") as file:
         data = json.load(file)
 
@@ -126,8 +130,8 @@ else:
                             zoom=5)
 
     # Configuration of the map
-    fig.update_layout(mapbox_style='open-street-map', width=1600, height=800)
+    fig.update_layout(mapbox_style='open-street-map', height=800)
 
     # Display of the map
     st.header('Carte des stations de recharge électrique', divider='blue')
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True)
