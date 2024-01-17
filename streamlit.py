@@ -64,6 +64,13 @@ max_possible_weight = float(df['Poids (kg) max'].max())
 min_weight, max_weight = st.sidebar.slider("Filtrer par poids (kg)", min_possible_weight, max_possible_weight, (min_possible_weight, max_possible_weight))
 df_filtered_weight = df.query(f'not (`Poids (kg) min` > {max_weight} or `Poids (kg) max` < {min_weight}) and not (`Poids (kg) min`.isnull() and `Poids (kg) max`.isnull())')
 
+# Surface
+df['Surface (m2)'] = df['Longueur (mm)'] * df['Largeur (mm)'] / 1000000
+min_possible_surface = float(df['Surface (m2)'].min())
+max_possible_surface = float(df['Surface (m2)'].max())
+min_surface, max_surface = st.sidebar.slider("Filtrer par surface (m²)", min_possible_surface, max_possible_surface, (min_possible_surface, max_possible_surface))
+df_filtered_surface = df.query(f'{min_surface} <= `Surface (m2)` and `Surface (m2)` <= {max_surface} and not `Surface (m2)`.isnull()')
+
 # st.write("df_filtered_brand")
 # st.dataframe(df_filtered_brand)
 # st.write("df_filtered_price")
@@ -78,7 +85,9 @@ df_filtered_weight = df.query(f'not (`Poids (kg) min` > {max_weight} or `Poids (
 # st.dataframe(df_filtered_autonomy)
 # st.write("df_filtered_weight")
 # st.dataframe(df_filtered_weight)
+# st.write("df_filtered_surface")
+# st.dataframe(df_filtered_surface)
 # st.write("df_filtered_final")
 
-df_filtered_final = pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(df_filtered_brand, df_filtered_price, how='inner'), df_filtered_acceleration, how='inner'), df_filtered_battery, how='inner'), df_filtered_speed, how='inner'), df_filtered_autonomy, how='inner'), df_filtered_weight, how='inner')
+df_filtered_final = pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(df_filtered_brand, df_filtered_price, how='inner'), df_filtered_acceleration, how='inner'), df_filtered_battery, how='inner'), df_filtered_speed, how='inner'), df_filtered_autonomy, how='inner'), df_filtered_weight, how='inner'), df_filtered_surface, how='inner')
 st.dataframe(df_filtered_final)
