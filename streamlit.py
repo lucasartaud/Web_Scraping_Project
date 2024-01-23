@@ -51,7 +51,7 @@ st.markdown(
 )
 
 st.sidebar.write(f"<h3>Pages</h3>", unsafe_allow_html=True)
-selected_page = st.sidebar.selectbox("Sélectionner une page", ["Accueil", "Filtres", "Carte"])
+selected_page = st.sidebar.selectbox("Sélectionner une page", ["Accueil", "Filtres", "Économies", "Carte"])
 
 if selected_page == "Accueil":
     st.write("<h1>Projet Web Scraping</h1>", unsafe_allow_html=True)
@@ -131,6 +131,29 @@ elif selected_page == "Filtres":
             st.write(f"<p>{text('Poids', row['Poids (kg) min'], row['Poids (kg) max'], 'kg')}</p>", unsafe_allow_html=True)
             st.write(f"<p>{'Longueur : ' + str(row['Longueur (mm)']) + ' mm'}</p>", unsafe_allow_html=True)
             st.write(f"<p>{'Largeur : ' + str(row['Largeur (mm)']) + ' mm'}</p>", unsafe_allow_html=True)
+
+elif selected_page == "Économies":
+    df_pdf = pd.read_csv('comparatif_VE.csv')
+    df_merged = pd.merge(df, df_pdf, how='inner', left_on='Modèle', right_on='Marque / Modèle')
+
+    st.write(f"<h2>Économies réalisées grâce à l'électrique</h2>", unsafe_allow_html=True)
+    actual_consumption = st.text_input("Quelle est la consommation actuelle de votre voiture (l/100km) ?")
+    number_of_kilometers = st.text_input("Combien de kilomètres vous faîtes chaques année ?")
+    autonomy_required = st.text_input("Combien de kilomètres d'autonomie vous avez besoin ?")
+    price_required = st.text_input("Quel est mon budget pour l'achat de votre voiture électrique ?")
+
+    if number_of_kilometers != '':
+        number_of_kilometers = float(number_of_kilometers)
+    if autonomy_required != '':
+        autonomy_required = float(autonomy_required)
+        df_merged = df_merged.query(f'`Autonomie` > {autonomy_required}')
+
+    if price_required != '':
+        price_required = float(price_required)
+        df_merged = df_merged.query(f'`Prix (euros) min` < {price_required} or `Prix (euros) max` < {price_required}')
+
+    st.dataframe(df_merged)
+
 
 elif selected_page == "Carte":
     with open("consolidation-etalab-schema-irve-statique-v-2.2.0-20240116.json", "r") as file:
