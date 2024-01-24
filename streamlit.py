@@ -141,10 +141,10 @@ elif selected_page == "Économies":
     df_merged = pd.merge(df, df_pdf, how='inner', left_on='Modèle', right_on='Marque / Modèle')
 
     st.write(f"<h2>Économies réalisées grâce à l'électrique</h2>", unsafe_allow_html=True)
-    actual_consumption = st.sidebar.text_input("Quelle est la consommation de carburant de votre voiture actuelle en litres par 100 km ?")
+    actual_consumption = st.sidebar.text_input("Quelle est la consommation de carburant de votre voiture thermique en litres par 100 km ?")
     price_per_litre = st.sidebar.text_input("Quel est le prix du litre de carburant en euros ?")
     number_of_kilometers = st.sidebar.text_input("Combien de kilomètres parcourez-vous par an ?")
-    autonomy_required = st.sidebar.text_input("De combien de kilomètres d'autonomie avez-vous besoin ?")
+    autonomy_required = st.sidebar.text_input("De combien de kilomètres d'autonomie quotidiennement avez-vous besoin ?")
     price_required = st.sidebar.text_input("Quel est votre budget pour l'achat d'une voiture électrique ?")
 
     try:
@@ -161,13 +161,13 @@ elif selected_page == "Économies":
 
         if autonomy_required != '':
             autonomy_required = float(autonomy_required)
-            df_merged = df_merged.query(f'`Autonomie (km) min` > {autonomy_required} or `Autonomie (km) max` > {autonomy_required}')
+            df_merged = df_merged.query(f'`Autonomie (km) min` >= {autonomy_required} or `Autonomie (km) max` >= {autonomy_required}')
 
         if price_required != '':
             price_required = float(price_required)
-            df_merged = df_merged.query(f'`Prix (euros) min` < {price_required} or `Prix (euros) max` < {price_required}')
+            df_merged = df_merged.query(f'`Prix (euros) min` <= {price_required} or `Prix (euros) max` <= {price_required}')
     
-        df_merged['Économies'] = (number_of_kilometers / 100) * actual_consumption * price_per_litre - (number_of_kilometers / 100) * df_merged['Coût au 100km (WLTP)']
+        df_merged['Économies'] = ((number_of_kilometers / 100) * actual_consumption * price_per_litre - (number_of_kilometers / 100) * df_merged['Coût au 100km (WLTP)']).astype(int)
 
         df_merged.reset_index(inplace=True)
         col1, col2, col3, col4 = st.columns(4)
