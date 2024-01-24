@@ -138,22 +138,56 @@ elif selected_page == "Économies":
 
     st.write(f"<h2>Économies réalisées grâce à l'électrique</h2>", unsafe_allow_html=True)
     actual_consumption = st.text_input("Quelle est la consommation actuelle de votre voiture (l/100km) ?")
+    price_per_litre = st.text_input("Quel est le prix du carburant au litre ?")
     number_of_kilometers = st.text_input("Combien de kilomètres vous faîtes chaques année ?")
     autonomy_required = st.text_input("Combien de kilomètres d'autonomie vous avez besoin ?")
     price_required = st.text_input("Quel est mon budget pour l'achat de votre voiture électrique ?")
 
-    if number_of_kilometers != '':
-        number_of_kilometers = float(number_of_kilometers)
-    if autonomy_required != '':
-        autonomy_required = float(autonomy_required)
-        df_merged = df_merged.query(f'`Autonomie` > {autonomy_required}')
+    def transform_and_extract_numeric(value):
+        first_part = value.split('/')[0]
+        numeric_part = ''.join(char for char in first_part if char.isdigit() or char == ',')
+        numeric_part = numeric_part.replace(',', '.')
+        return float(numeric_part) if numeric_part else None
+    df_merged['Coût au 100km (WLTP)'] = df_merged['Coût au 100km (WLTP)'].apply(transform_and_extract_numeric)
 
-    if price_required != '':
-        price_required = float(price_required)
-        df_merged = df_merged.query(f'`Prix (euros) min` < {price_required} or `Prix (euros) max` < {price_required}')
+    try:
+        if actual_consumption != '':
+            actual_consumption = float(actual_consumption)
 
-    st.dataframe(df_merged)
+        if price_per_litre != '':
+            price_per_litre = price_per_litre.replace(',', '.')
+            price_per_litre = float(price_per_litre)
 
+        if number_of_kilometers != '':
+            number_of_kilometers = float(number_of_kilometers)
+
+        if autonomy_required != '':
+            autonomy_required = float(autonomy_required)
+            df_merged = df_merged.query(f'`Autonomie (km) min` > {autonomy_required} or `Autonomie (km) max` > {autonomy_required}')
+
+        if price_required != '':
+            price_required = float(price_required)
+            df_merged = df_merged.query(f'`Prix (euros) min` < {price_required} or `Prix (euros) max` < {price_required}')
+    
+        df_merged['Économies'] = (number_of_kilometers / 100) * actual_consumption * price_per_litre - (number_of_kilometers / 100) * df_merged['Coût au 100km (WLTP)']
+
+        col1, col2, col3, col4 = st.columns(4)
+        for index, row in df_merged.iterrows():
+            with col1 if index % 4 == 0 else col2 if index % 4 == 1 else col3 if index % 4 == 2 else col4:
+                st.image(f'images/{row["Modèle"]}.jpg', use_column_width=True)
+                st.write(f"<h4>{row['Modèle']}</h4>", unsafe_allow_html=True)
+                st.write(f"<p>{text('Prix', row['Prix (euros) min'], row['Prix (euros) max'], 'euros')}</p>", unsafe_allow_html=True)
+                st.write(f"<p>{text('Accélération de 0 à 100 km/h', row['Accélération de 0 à 100 km/h (s) min'], row['Accélération de 0 à 100 km/h (s) min'], 'secondes')}</p>", unsafe_allow_html=True)
+                st.write(f"<p>{text('Puissance de la batterie', row['Puissance de la batterie (kWh) min'], row['Puissance de la batterie (kWh) max'], 'kWh')}</p>", unsafe_allow_html=True)
+                st.write(f"<p>{text('Vitesse maximale', row['Vitesse maximale (km/h) min'], row['Vitesse maximale (km/h) max'], 'km/h')}</p>", unsafe_allow_html=True)
+                st.write(f"<p>{text('Autonomie', row['Autonomie (km) min'], row['Autonomie (km) max'], 'km')}</p>", unsafe_allow_html=True)
+                st.write(f"<p>{text('Poids', row['Poids (kg) min'], row['Poids (kg) max'], 'kg')}</p>", unsafe_allow_html=True)
+                st.write(f"<p>{'Longueur : ' + str(row['Longueur (mm)']) + ' mm'}</p>", unsafe_allow_html=True)
+                st.write(f"<p>{'Largeur : ' + str(row['Largeur (mm)']) + ' mm'}</p>", unsafe_allow_html=True)
+                st.write(f"<p>{'Économies annuelles : ' + str(row['Économies']) + ' euros'}</p>", unsafe_allow_html=True)
+
+    except:
+        st.write(f"<p>Veuillez entrer des valeurs numériques.</p>", unsafe_allow_html=True)
 
 elif selected_page == "Carte":
     with open("consolidation-etalab-schema-irve-statique-v-2.2.0-20240116.json", "r") as file:
