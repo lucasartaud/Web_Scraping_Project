@@ -71,62 +71,60 @@ elif selected_page == "Filtres":
     # Brand:
     enabled_brand = st.sidebar.checkbox("Activer le filtre par marque")
     brand = st.sidebar.selectbox("Filtrer par marque", ['Tesla', 'Renault', 'Mercedes', 'Peugeot', 'NIO'], key='marque') if enabled_brand else 'Tout'
-    df_filtered_brand = df[df['Modèle'].str.contains(brand, case=False)] if brand != 'Tout' else df.copy()
+    df_filtered = df[df['Modèle'].str.contains(brand, case=False)] if brand != 'Tout' else df.copy()
 
     # Price:
     min_possible_price = float(df['Prix (euros) min'].min())
     max_possible_price = float(df['Prix (euros) max'].max())
     min_price, max_price = st.sidebar.slider("Filtrer par prix", min_possible_price, max_possible_price, (min_possible_price, max_possible_price))
-    df_filtered_price = df.query(f'not (`Prix (euros) min` > {max_price} or `Prix (euros) max` < {min_price}) and not (`Prix (euros) min`.isnull() and `Prix (euros) max`.isnull())')
+    df_filtered = df_filtered.query(f'not (`Prix (euros) min` > {max_price} or `Prix (euros) max` < {min_price}) and not (`Prix (euros) min`.isnull() and `Prix (euros) max`.isnull())')
 
     # Acceleration:
     min_possible_acceleration = float(df['Accélération de 0 à 100 km/h (s) min'].min())
     max_possible_acceleration = float(df['Accélération de 0 à 100 km/h (s) max'].max())
     min_acceleration, max_acceleration = st.sidebar.slider("Filtrer par accélération (0 à 100 km/h)", min_possible_acceleration, max_possible_acceleration, (min_possible_acceleration, max_possible_acceleration))
-    df_filtered_acceleration = df.query(f'not (`Accélération de 0 à 100 km/h (s) min` > {max_acceleration} or `Accélération de 0 à 100 km/h (s) max` < {min_acceleration}) and not (`Accélération de 0 à 100 km/h (s) min`.isnull() and `Accélération de 0 à 100 km/h (s) max`.isnull())')
+    df_filtered = df_filtered.query(f'not (`Accélération de 0 à 100 km/h (s) min` > {max_acceleration} or `Accélération de 0 à 100 km/h (s) max` < {min_acceleration}) and not (`Accélération de 0 à 100 km/h (s) min`.isnull() and `Accélération de 0 à 100 km/h (s) max`.isnull())')
 
     # Battery:
     min_possible_battery = float(df['Puissance de la batterie (kWh) min'].min())
     max_possible_battery = float(df['Puissance de la batterie (kWh) max'].max())
     min_battery, max_battery = st.sidebar.slider("Filtrer par la puissance de la batterie (kWh)", min_possible_battery, max_possible_battery, (min_possible_battery, max_possible_battery))
-    df_filtered_battery = df.query(f'not (`Puissance de la batterie (kWh) min` > {max_battery} or `Puissance de la batterie (kWh) max` < {min_battery}) and not (`Puissance de la batterie (kWh) min`.isnull() and `Puissance de la batterie (kWh) max`.isnull())')
+    df_filtered = df_filtered.query(f'not (`Puissance de la batterie (kWh) min` > {max_battery} or `Puissance de la batterie (kWh) max` < {min_battery}) and not (`Puissance de la batterie (kWh) min`.isnull() and `Puissance de la batterie (kWh) max`.isnull())')
 
     # Speed:
     min_possible_speed = float(df['Vitesse maximale (km/h) min'].min())
     max_possible_speed = float(df['Vitesse maximale (km/h) max'].max())
     min_speed, max_speed = st.sidebar.slider("Filtrer par vitesse maximale (km/h)", min_possible_speed, max_possible_speed, (min_possible_speed, max_possible_speed))
-    df_filtered_speed = df.query(f'not (`Vitesse maximale (km/h) min` > {max_speed} or `Vitesse maximale (km/h) max` < {min_speed}) and not (`Vitesse maximale (km/h) min`.isnull() and `Vitesse maximale (km/h) max`.isnull())')
+    df_filtered = df_filtered.query(f'not (`Vitesse maximale (km/h) min` > {max_speed} or `Vitesse maximale (km/h) max` < {min_speed}) and not (`Vitesse maximale (km/h) min`.isnull() and `Vitesse maximale (km/h) max`.isnull())')
 
     # Autonomy:
     min_possible_autonomy = float(df['Autonomie (km) min'].min())
     max_possible_autonomy = float(df['Autonomie (km) max'].max())
     min_autonomy, max_autonomy = st.sidebar.slider("Filtrer par autonomie (km)", min_possible_autonomy, max_possible_autonomy, (min_possible_autonomy, max_possible_autonomy))
-    df_filtered_autonomy = df.query(f'not (`Autonomie (km) min` > {max_autonomy} or `Autonomie (km) max` < {min_autonomy}) and not (`Autonomie (km) min`.isnull() and `Autonomie (km) max`.isnull())')
+    df_filtered = df_filtered.query(f'not (`Autonomie (km) min` > {max_autonomy} or `Autonomie (km) max` < {min_autonomy}) and not (`Autonomie (km) min`.isnull() and `Autonomie (km) max`.isnull())')
 
     # Weight:
     min_possible_weight = float(df['Poids (kg) min'].min())
     max_possible_weight = float(df['Poids (kg) max'].max())
     min_weight, max_weight = st.sidebar.slider("Filtrer par poids (kg)", min_possible_weight, max_possible_weight, (min_possible_weight, max_possible_weight))
-    df_filtered_weight = df.query(f'not (`Poids (kg) min` > {max_weight} or `Poids (kg) max` < {min_weight}) and not (`Poids (kg) min`.isnull() and `Poids (kg) max`.isnull())')
+    df_filtered = df_filtered.query(f'not (`Poids (kg) min` > {max_weight} or `Poids (kg) max` < {min_weight}) and not (`Poids (kg) min`.isnull() and `Poids (kg) max`.isnull())')
 
     # Length:
     min_possible_length = float(df['Longueur (mm)'].min())
     max_possible_length = float(df['Longueur (mm)'].max())
     min_length, max_length = st.sidebar.slider("Filtrer par longueur (mm)", min_possible_length, max_possible_length, (min_possible_length, max_possible_length))
-    df_filtered_length = df.query(f'{min_length} <= `Longueur (mm)` and `Longueur (mm)` <= {max_length} and not `Longueur (mm)`.isnull()')
+    df_filtered = df_filtered.query(f'{min_length} <= `Longueur (mm)` and `Longueur (mm)` <= {max_length} and not `Longueur (mm)`.isnull()')
 
     # Width:
     min_possible_width = float(df['Largeur (mm)'].min())
     max_possible_width = float(df['Largeur (mm)'].max())
     min_width, max_width = st.sidebar.slider("Filtrer par largeur (mm)", min_possible_width, max_possible_width, (min_possible_width, max_possible_width))
-    df_filtered_width = df.query(f'{min_width} <= `Largeur (mm)` and `Largeur (mm)` <= {max_width} and not `Largeur (mm)`.isnull()')
-
-    # Final:
-    df_filtered_final = pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(df_filtered_brand, df_filtered_price, how='inner'), df_filtered_acceleration, how='inner'), df_filtered_battery, how='inner'), df_filtered_speed, how='inner'), df_filtered_autonomy, how='inner'), df_filtered_weight, how='inner'), df_filtered_length, how='inner'), df_filtered_width, how='inner')
+    df_filtered = df_filtered.query(f'{min_width} <= `Largeur (mm)` and `Largeur (mm)` <= {max_width} and not `Largeur (mm)`.isnull()')
 
     st.write(f"<h2>Résultats du filtrage</h2>", unsafe_allow_html=True)
+    df_filtered.reset_index(inplace=True)
     col1, col2, col3, col4 = st.columns(4)
-    for index, row in df_filtered_final.iterrows():
+    for index, row in df_filtered.iterrows():
         with col1 if index % 4 == 0 else col2 if index % 4 == 1 else col3 if index % 4 == 2 else col4:
             st.image(f'images/{row["Modèle"]}.jpg', use_column_width=True)
             st.write(f"<h4>{row['Modèle']}</h4>", unsafe_allow_html=True)
@@ -172,6 +170,7 @@ elif selected_page == "Économies":
     
         df_merged['Économies'] = (number_of_kilometers / 100) * actual_consumption * price_per_litre - (number_of_kilometers / 100) * df_merged['Coût au 100km (WLTP)']
 
+        df_merged.reset_index(inplace=True)
         col1, col2, col3, col4 = st.columns(4)
         for index, row in df_merged.iterrows():
             with col1 if index % 4 == 0 else col2 if index % 4 == 1 else col3 if index % 4 == 2 else col4:
