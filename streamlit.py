@@ -137,21 +137,15 @@ elif selected_page == "Économies":
     df_merged = pd.merge(df, df_pdf, how='inner', left_on='Modèle', right_on='Marque / Modèle')
 
     st.write(f"<h2>Économies réalisées grâce à l'électrique</h2>", unsafe_allow_html=True)
-    actual_consumption = st.text_input("Quelle est la consommation actuelle de votre voiture (l/100km) ?")
-    price_per_litre = st.text_input("Quel est le prix du carburant au litre ?")
+    actual_consumption = st.text_input("Quelle est la consommation de votre voiture actuelle (l/100km) ?")
+    price_per_litre = st.text_input("Quel est le prix en euros du carburant au litre ?")
     number_of_kilometers = st.text_input("Combien de kilomètres vous faîtes chaques année ?")
     autonomy_required = st.text_input("Combien de kilomètres d'autonomie vous avez besoin ?")
     price_required = st.text_input("Quel est mon budget pour l'achat de votre voiture électrique ?")
 
-    def transform_and_extract_numeric(value):
-        first_part = value.split('/')[0]
-        numeric_part = ''.join(char for char in first_part if char.isdigit() or char == ',')
-        numeric_part = numeric_part.replace(',', '.')
-        return float(numeric_part) if numeric_part else None
-    df_merged['Coût au 100km (WLTP)'] = df_merged['Coût au 100km (WLTP)'].apply(transform_and_extract_numeric)
-
     try:
         if actual_consumption != '':
+            actual_consumption = actual_consumption.replace(',', '.')
             actual_consumption = float(actual_consumption)
 
         if price_per_litre != '':
