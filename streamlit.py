@@ -45,6 +45,10 @@ st.markdown(
             font-size: 20px;
             text-align: center;
         }
+        .bold {
+            font-weight: bold;
+            color:#B22222;
+        }
     </style>
     """,
     unsafe_allow_html=True
@@ -56,7 +60,10 @@ selected_page = st.sidebar.selectbox("Sélectionner une page", ["Accueil", "Filt
 if selected_page == "Accueil":
     st.write("<h1>Projet Web Scraping</h1>", unsafe_allow_html=True)
     st.write("<h2>Lucas Artaud & Iswarya Sivasubramaniam DIA 1</h2>", unsafe_allow_html=True)
-    st.write("<h3>Le but de notre projet est, dans un premier temps, de répertorier les voitures électriques des différentes marques avec leur caractéristiques et donner la possibilité à l’utilisateur de naviguer et découvrir les différents modèles. À partir de ces données, nous allons conseiller aux utilisateurs la voiture adaptée à leurs besoins. L’utilisateur pourra renseigner ses critères, comme par exemple la catégorie, le budget, l’utilisation, la consommation, l’autonomie et l’empreinte carbone, et nous lui proposerons le véhicule le plus adapté. Veuillez sélectionner une page en haut à gauche.</h3>", unsafe_allow_html=True)
+    st.write("<h3>Les transports représentent 24% des émissions totales de CO2 dans le monde, et même 43% en France !</h3>", unsafe_allow_html=True)
+    st.write("<h3>Le but de notre projet est de répertorier les voitures électriques des différentes marques avec leur caractéristiques et donner la possibilité à l'utilisateur de naviguer et découvrir les différents modèles. À partir de ces données, nous allons conseiller aux utilisateurs la voiture adaptée à leurs besoins.</h3>", unsafe_allow_html=True)
+    st.write("<h3>L'utilisateur peut renseigner ses critères, comme le prix, l'accélération, la puissance de la batterie, la vitesse maximale, l'autonomie, le poids, la longueur et la largeur. Il peut également visualiser les économies de carburant réalisées par voiture. Enfin, l'utilisateur peut voir les bornes de recharges près de chez lui.</h3>", unsafe_allow_html=True)
+    st.write("<h3>Veuillez sélectionner une page en haut à gauche.</h3>", unsafe_allow_html=True)
 
 elif selected_page == "Filtres":
     st.sidebar.write(f"<h3>Filtres</h3>", unsafe_allow_html=True)
@@ -137,11 +144,11 @@ elif selected_page == "Économies":
     df_merged = pd.merge(df, df_pdf, how='inner', left_on='Modèle', right_on='Marque / Modèle')
 
     st.write(f"<h2>Économies réalisées grâce à l'électrique</h2>", unsafe_allow_html=True)
-    actual_consumption = st.text_input("Quelle est la consommation de votre voiture actuelle (l/100km) ?")
-    price_per_litre = st.text_input("Quel est le prix en euros du carburant au litre ?")
-    number_of_kilometers = st.text_input("Combien de kilomètres vous faîtes chaques année ?")
-    autonomy_required = st.text_input("Combien de kilomètres d'autonomie vous avez besoin ?")
-    price_required = st.text_input("Quel est mon budget pour l'achat de votre voiture électrique ?")
+    actual_consumption = st.text_input("Quelle est la consommation de carburant de votre voiture actuelle en litres par 100 km ?")
+    price_per_litre = st.text_input("Quel est le prix du litre de carburant en euros ?")
+    number_of_kilometers = st.text_input("Combien de kilomètres parcourez-vous par an ?")
+    autonomy_required = st.text_input("De combien de kilomètres d'autonomie avez-vous besoin ?")
+    price_required = st.text_input("Quel est votre budget pour l'achat d'une voiture électrique ?")
 
     try:
         if actual_consumption != '':
@@ -178,7 +185,7 @@ elif selected_page == "Économies":
                 st.write(f"<p>{text('Poids', row['Poids (kg) min'], row['Poids (kg) max'], 'kg')}</p>", unsafe_allow_html=True)
                 st.write(f"<p>{'Longueur : ' + str(row['Longueur (mm)']) + ' mm'}</p>", unsafe_allow_html=True)
                 st.write(f"<p>{'Largeur : ' + str(row['Largeur (mm)']) + ' mm'}</p>", unsafe_allow_html=True)
-                st.write(f"<p>{'Économies annuelles : ' + str(row['Économies']) + ' euros'}</p>", unsafe_allow_html=True)
+                st.write(f"<p class='bold'>{'Économies annuelles : ' + str(row['Économies']) + ' euros'}</p>", unsafe_allow_html=True)
 
     except:
         st.write(f"<p>Veuillez entrer des valeurs numériques.</p>", unsafe_allow_html=True)
