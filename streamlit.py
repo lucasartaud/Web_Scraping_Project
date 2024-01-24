@@ -41,7 +41,7 @@ st.markdown(
             text-align: center;
         }
         p {
-            font-size: 20px;
+            font-size: 16px;
             text-align: center;
         }
         .bold {
