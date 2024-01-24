@@ -141,11 +141,11 @@ elif selected_page == "Économies":
     df_merged = pd.merge(df, df_pdf, how='inner', left_on='Modèle', right_on='Marque / Modèle')
 
     st.write(f"<h2>Économies réalisées grâce à l'électrique</h2>", unsafe_allow_html=True)
-    actual_consumption = st.text_input("Quelle est la consommation de carburant de votre voiture actuelle en litres par 100 km ?")
-    price_per_litre = st.text_input("Quel est le prix du litre de carburant en euros ?")
-    number_of_kilometers = st.text_input("Combien de kilomètres parcourez-vous par an ?")
-    autonomy_required = st.text_input("De combien de kilomètres d'autonomie avez-vous besoin ?")
-    price_required = st.text_input("Quel est votre budget pour l'achat d'une voiture électrique ?")
+    actual_consumption = st.sidebar.text_input("Quelle est la consommation de carburant de votre voiture actuelle en litres par 100 km ?")
+    price_per_litre = st.sidebar.text_input("Quel est le prix du litre de carburant en euros ?")
+    number_of_kilometers = st.sidebar.text_input("Combien de kilomètres parcourez-vous par an ?")
+    autonomy_required = st.sidebar.text_input("De combien de kilomètres d'autonomie avez-vous besoin ?")
+    price_required = st.sidebar.text_input("Quel est votre budget pour l'achat d'une voiture électrique ?")
 
     try:
         if actual_consumption != '':
@@ -186,7 +186,7 @@ elif selected_page == "Économies":
                 st.write(f"<p class='bold'>{'Économies annuelles : ' + str(row['Économies']) + ' euros'}</p>", unsafe_allow_html=True)
 
     except:
-        st.write(f"<p>Veuillez entrer des valeurs numériques.</p>", unsafe_allow_html=True)
+        st.write(f"<h3>Veuillez entrer des valeurs numériques.</h3>", unsafe_allow_html=True)
 
 elif selected_page == "Carte":
     with open("consolidation-etalab-schema-irve-statique-v-2.2.0-20240116.json", "r") as file:
