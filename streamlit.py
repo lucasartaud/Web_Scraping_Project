@@ -1,5 +1,4 @@
 import json
-import os
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -42,8 +41,12 @@ st.markdown(
             text-align: center;
         }
         p {
-            font-size: 20px;
+            font-size: 16px;
             text-align: center;
+        }
+        .bold {
+            font-weight: bold;
+            color:#B22222;
         }
     </style>
     """,
@@ -56,7 +59,10 @@ selected_page = st.sidebar.selectbox("Sélectionner une page", ["Accueil", "Filt
 if selected_page == "Accueil":
     st.write("<h1>Projet Web Scraping</h1>", unsafe_allow_html=True)
     st.write("<h2>Lucas Artaud & Iswarya Sivasubramaniam DIA 1</h2>", unsafe_allow_html=True)
-    st.write("<h3>Le but de notre projet est, dans un premier temps, de répertorier les voitures électriques des différentes marques avec leur caractéristiques et donner la possibilité à l’utilisateur de naviguer et découvrir les différents modèles. À partir de ces données, nous allons conseiller aux utilisateurs la voiture adaptée à leurs besoins. L’utilisateur pourra renseigner ses critères, comme par exemple la catégorie, le budget, l’utilisation, la consommation, l’autonomie et l’empreinte carbone, et nous lui proposerons le véhicule le plus adapté. Veuillez sélectionner une page en haut à gauche.</h3>", unsafe_allow_html=True)
+    st.write("<h3>Les transports représentent 24% des émissions totales de CO2 dans le monde, et même 43% en France !</h3>", unsafe_allow_html=True)
+    st.write("<h3>Le but de notre projet est de répertorier les voitures électriques des différentes marques avec leur caractéristiques et donner la possibilité à l'utilisateur de naviguer et découvrir les différents modèles. À partir de ces données, nous allons conseiller aux utilisateurs la voiture adaptée à leurs besoins.</h3>", unsafe_allow_html=True)
+    st.write("<h3>L'utilisateur peut renseigner ses critères, comme le prix, l'accélération, la puissance de la batterie, la vitesse maximale, l'autonomie, le poids, la longueur et la largeur. Il peut également visualiser les économies de carburant réalisées par voiture. Enfin, l'utilisateur peut voir les bornes de recharges près de chez lui.</h3>", unsafe_allow_html=True)
+    st.write("<h3>Veuillez sélectionner une page en haut à gauche.</h3>", unsafe_allow_html=True)
 
 elif selected_page == "Filtres":
     st.sidebar.write(f"<h3>Filtres</h3>", unsafe_allow_html=True)
@@ -64,62 +70,60 @@ elif selected_page == "Filtres":
     # Brand:
     enabled_brand = st.sidebar.checkbox("Activer le filtre par marque")
     brand = st.sidebar.selectbox("Filtrer par marque", ['Tesla', 'Renault', 'Mercedes', 'Peugeot', 'NIO'], key='marque') if enabled_brand else 'Tout'
-    df_filtered_brand = df[df['Modèle'].str.contains(brand, case=False)] if brand != 'Tout' else df.copy()
+    df_filtered = df[df['Modèle'].str.contains(brand, case=False)] if brand != 'Tout' else df.copy()
 
     # Price:
     min_possible_price = float(df['Prix (euros) min'].min())
     max_possible_price = float(df['Prix (euros) max'].max())
     min_price, max_price = st.sidebar.slider("Filtrer par prix", min_possible_price, max_possible_price, (min_possible_price, max_possible_price))
-    df_filtered_price = df.query(f'not (`Prix (euros) min` > {max_price} or `Prix (euros) max` < {min_price}) and not (`Prix (euros) min`.isnull() and `Prix (euros) max`.isnull())')
+    df_filtered = df_filtered.query(f'not (`Prix (euros) min` > {max_price} or `Prix (euros) max` < {min_price}) and not (`Prix (euros) min`.isnull() and `Prix (euros) max`.isnull())')
 
     # Acceleration:
     min_possible_acceleration = float(df['Accélération de 0 à 100 km/h (s) min'].min())
     max_possible_acceleration = float(df['Accélération de 0 à 100 km/h (s) max'].max())
     min_acceleration, max_acceleration = st.sidebar.slider("Filtrer par accélération (0 à 100 km/h)", min_possible_acceleration, max_possible_acceleration, (min_possible_acceleration, max_possible_acceleration))
-    df_filtered_acceleration = df.query(f'not (`Accélération de 0 à 100 km/h (s) min` > {max_acceleration} or `Accélération de 0 à 100 km/h (s) max` < {min_acceleration}) and not (`Accélération de 0 à 100 km/h (s) min`.isnull() and `Accélération de 0 à 100 km/h (s) max`.isnull())')
+    df_filtered = df_filtered.query(f'not (`Accélération de 0 à 100 km/h (s) min` > {max_acceleration} or `Accélération de 0 à 100 km/h (s) max` < {min_acceleration}) and not (`Accélération de 0 à 100 km/h (s) min`.isnull() and `Accélération de 0 à 100 km/h (s) max`.isnull())')
 
     # Battery:
     min_possible_battery = float(df['Puissance de la batterie (kWh) min'].min())
     max_possible_battery = float(df['Puissance de la batterie (kWh) max'].max())
     min_battery, max_battery = st.sidebar.slider("Filtrer par la puissance de la batterie (kWh)", min_possible_battery, max_possible_battery, (min_possible_battery, max_possible_battery))
-    df_filtered_battery = df.query(f'not (`Puissance de la batterie (kWh) min` > {max_battery} or `Puissance de la batterie (kWh) max` < {min_battery}) and not (`Puissance de la batterie (kWh) min`.isnull() and `Puissance de la batterie (kWh) max`.isnull())')
+    df_filtered = df_filtered.query(f'not (`Puissance de la batterie (kWh) min` > {max_battery} or `Puissance de la batterie (kWh) max` < {min_battery}) and not (`Puissance de la batterie (kWh) min`.isnull() and `Puissance de la batterie (kWh) max`.isnull())')
 
     # Speed:
     min_possible_speed = float(df['Vitesse maximale (km/h) min'].min())
     max_possible_speed = float(df['Vitesse maximale (km/h) max'].max())
     min_speed, max_speed = st.sidebar.slider("Filtrer par vitesse maximale (km/h)", min_possible_speed, max_possible_speed, (min_possible_speed, max_possible_speed))
-    df_filtered_speed = df.query(f'not (`Vitesse maximale (km/h) min` > {max_speed} or `Vitesse maximale (km/h) max` < {min_speed}) and not (`Vitesse maximale (km/h) min`.isnull() and `Vitesse maximale (km/h) max`.isnull())')
+    df_filtered = df_filtered.query(f'not (`Vitesse maximale (km/h) min` > {max_speed} or `Vitesse maximale (km/h) max` < {min_speed}) and not (`Vitesse maximale (km/h) min`.isnull() and `Vitesse maximale (km/h) max`.isnull())')
 
     # Autonomy:
     min_possible_autonomy = float(df['Autonomie (km) min'].min())
     max_possible_autonomy = float(df['Autonomie (km) max'].max())
     min_autonomy, max_autonomy = st.sidebar.slider("Filtrer par autonomie (km)", min_possible_autonomy, max_possible_autonomy, (min_possible_autonomy, max_possible_autonomy))
-    df_filtered_autonomy = df.query(f'not (`Autonomie (km) min` > {max_autonomy} or `Autonomie (km) max` < {min_autonomy}) and not (`Autonomie (km) min`.isnull() and `Autonomie (km) max`.isnull())')
+    df_filtered = df_filtered.query(f'not (`Autonomie (km) min` > {max_autonomy} or `Autonomie (km) max` < {min_autonomy}) and not (`Autonomie (km) min`.isnull() and `Autonomie (km) max`.isnull())')
 
     # Weight:
     min_possible_weight = float(df['Poids (kg) min'].min())
     max_possible_weight = float(df['Poids (kg) max'].max())
     min_weight, max_weight = st.sidebar.slider("Filtrer par poids (kg)", min_possible_weight, max_possible_weight, (min_possible_weight, max_possible_weight))
-    df_filtered_weight = df.query(f'not (`Poids (kg) min` > {max_weight} or `Poids (kg) max` < {min_weight}) and not (`Poids (kg) min`.isnull() and `Poids (kg) max`.isnull())')
+    df_filtered = df_filtered.query(f'not (`Poids (kg) min` > {max_weight} or `Poids (kg) max` < {min_weight}) and not (`Poids (kg) min`.isnull() and `Poids (kg) max`.isnull())')
 
     # Length:
     min_possible_length = float(df['Longueur (mm)'].min())
     max_possible_length = float(df['Longueur (mm)'].max())
     min_length, max_length = st.sidebar.slider("Filtrer par longueur (mm)", min_possible_length, max_possible_length, (min_possible_length, max_possible_length))
-    df_filtered_length = df.query(f'{min_length} <= `Longueur (mm)` and `Longueur (mm)` <= {max_length} and not `Longueur (mm)`.isnull()')
+    df_filtered = df_filtered.query(f'{min_length} <= `Longueur (mm)` and `Longueur (mm)` <= {max_length} and not `Longueur (mm)`.isnull()')
 
     # Width:
     min_possible_width = float(df['Largeur (mm)'].min())
     max_possible_width = float(df['Largeur (mm)'].max())
     min_width, max_width = st.sidebar.slider("Filtrer par largeur (mm)", min_possible_width, max_possible_width, (min_possible_width, max_possible_width))
-    df_filtered_width = df.query(f'{min_width} <= `Largeur (mm)` and `Largeur (mm)` <= {max_width} and not `Largeur (mm)`.isnull()')
-
-    # Final:
-    df_filtered_final = pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(pd.merge(df_filtered_brand, df_filtered_price, how='inner'), df_filtered_acceleration, how='inner'), df_filtered_battery, how='inner'), df_filtered_speed, how='inner'), df_filtered_autonomy, how='inner'), df_filtered_weight, how='inner'), df_filtered_length, how='inner'), df_filtered_width, how='inner')
+    df_filtered = df_filtered.query(f'{min_width} <= `Largeur (mm)` and `Largeur (mm)` <= {max_width} and not `Largeur (mm)`.isnull()')
 
     st.write(f"<h2>Résultats du filtrage</h2>", unsafe_allow_html=True)
+    df_filtered.reset_index(inplace=True)
     col1, col2, col3, col4 = st.columns(4)
-    for index, row in df_filtered_final.iterrows():
+    for index, row in df_filtered.iterrows():
         with col1 if index % 4 == 0 else col2 if index % 4 == 1 else col3 if index % 4 == 2 else col4:
             st.image(f'images/{row["Modèle"]}.jpg', use_column_width=True)
             st.write(f"<h4>{row['Modèle']}</h4>", unsafe_allow_html=True)
@@ -137,21 +141,15 @@ elif selected_page == "Économies":
     df_merged = pd.merge(df, df_pdf, how='inner', left_on='Modèle', right_on='Marque / Modèle')
 
     st.write(f"<h2>Économies réalisées grâce à l'électrique</h2>", unsafe_allow_html=True)
-    actual_consumption = st.text_input("Quelle est la consommation actuelle de votre voiture (l/100km) ?")
-    price_per_litre = st.text_input("Quel est le prix du carburant au litre ?")
-    number_of_kilometers = st.text_input("Combien de kilomètres vous faîtes chaques année ?")
-    autonomy_required = st.text_input("Combien de kilomètres d'autonomie vous avez besoin ?")
-    price_required = st.text_input("Quel est mon budget pour l'achat de votre voiture électrique ?")
-
-    def transform_and_extract_numeric(value):
-        first_part = value.split('/')[0]
-        numeric_part = ''.join(char for char in first_part if char.isdigit() or char == ',')
-        numeric_part = numeric_part.replace(',', '.')
-        return float(numeric_part) if numeric_part else None
-    df_merged['Coût au 100km (WLTP)'] = df_merged['Coût au 100km (WLTP)'].apply(transform_and_extract_numeric)
+    actual_consumption = st.sidebar.text_input("Quelle est la consommation de carburant de votre voiture actuelle en litres par 100 km ?")
+    price_per_litre = st.sidebar.text_input("Quel est le prix du litre de carburant en euros ?")
+    number_of_kilometers = st.sidebar.text_input("Combien de kilomètres parcourez-vous par an ?")
+    autonomy_required = st.sidebar.text_input("De combien de kilomètres d'autonomie avez-vous besoin ?")
+    price_required = st.sidebar.text_input("Quel est votre budget pour l'achat d'une voiture électrique ?")
 
     try:
         if actual_consumption != '':
+            actual_consumption = actual_consumption.replace(',', '.')
             actual_consumption = float(actual_consumption)
 
         if price_per_litre != '':
@@ -171,6 +169,7 @@ elif selected_page == "Économies":
     
         df_merged['Économies'] = (number_of_kilometers / 100) * actual_consumption * price_per_litre - (number_of_kilometers / 100) * df_merged['Coût au 100km (WLTP)']
 
+        df_merged.reset_index(inplace=True)
         col1, col2, col3, col4 = st.columns(4)
         for index, row in df_merged.iterrows():
             with col1 if index % 4 == 0 else col2 if index % 4 == 1 else col3 if index % 4 == 2 else col4:
@@ -184,10 +183,10 @@ elif selected_page == "Économies":
                 st.write(f"<p>{text('Poids', row['Poids (kg) min'], row['Poids (kg) max'], 'kg')}</p>", unsafe_allow_html=True)
                 st.write(f"<p>{'Longueur : ' + str(row['Longueur (mm)']) + ' mm'}</p>", unsafe_allow_html=True)
                 st.write(f"<p>{'Largeur : ' + str(row['Largeur (mm)']) + ' mm'}</p>", unsafe_allow_html=True)
-                st.write(f"<p>{'Économies annuelles : ' + str(row['Économies']) + ' euros'}</p>", unsafe_allow_html=True)
+                st.write(f"<p class='bold'>{'Économies annuelles : ' + str(row['Économies']) + ' euros'}</p>", unsafe_allow_html=True)
 
     except:
-        st.write(f"<p>Veuillez entrer des valeurs numériques.</p>", unsafe_allow_html=True)
+        st.write(f"<h3>Veuillez entrer des valeurs numériques.</h3>", unsafe_allow_html=True)
 
 elif selected_page == "Carte":
     with open("consolidation-etalab-schema-irve-statique-v-2.2.0-20240116.json", "r") as file:
