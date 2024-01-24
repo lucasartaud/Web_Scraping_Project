@@ -102,6 +102,7 @@ E-2008 (156 ch),9.1Sec.,150km/h,434Dm3,48.1kWh,406km
 E-2008 (136 ch),9.9Sec.,150km/h,434Dm3,46kWh,340km
 E-208 (156 ch),8.2Sec.,150km/h,309Dm3,48.1kWh,398km
 ,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+E-3008 (210 ch),8.7Sec.,170km/h,520Dm3,73kWh,525km
 E-308 (156 ch),10.5Sec.,170km/h,412Dm3,50.8kWh,413km
 E-Rifter (136 ch),11.2Sec.,130km/h,850Dm3,46kWh,276km
 2 (272 ch),6.4Sec.,205km/h,405Dm3,67kWh,546km
@@ -111,8 +112,8 @@ Enyaq (180 ch),8.8Sec.,160km/h,585Dm3,58kWh,412km
 Enyaq (204 ch),8.7Sec.,160km/h,585Dm3,77kWh,534km
 #1 (428 ch),3.9Sec.,180km/h,323Dm3,62kWh,400km
 Model 3 (276 ch),6.1Sec.,201km/h,528Dm3,57.5kWh,513km
-Model Y (276 ch),6.9Sec.,217km/h,700Dm3,57.5kWh,455km
 ,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+Model Y (276 ch),6.9Sec.,217km/h,700Dm3,57.5kWh,455km
 Model Y (276 ch),6.9Sec.,217km/h,700Dm3,55.5kWh,455km
 ID Buzz (204 ch),10.2Sec.,145km/h,1121Dm3,77kWh,416km
 ID3 (204 ch),7.3Sec.,160km/h,385Dm3,58kWh,417km
@@ -122,8 +123,8 @@ ID4 (170 ch),9Sec.,160km/h,543Dm3,52kWh,359km
 ID4 (174 ch),10.4Sec.,160km/h,543Dm3,77kWh,526km
 ID4 (204 ch),8.5Sec.,160km/h,543Dm3,77kWh,526km
 ID4 (170 ch),9Sec.,160km/h,543Dm3,52kWh,364km
-ID4 (286 ch),6.7Sec.,180km/h,543Dm3,77kWh,550km
 ,0 à 100,V max,Coffre,Bat.kWh,Autonomie
+ID4 (286 ch),6.7Sec.,180km/h,543Dm3,77kWh,550km
 ID4 (286 ch),6.6Sec.,180km/h,543Dm3,77kWh,530km
 EX30 (272 ch),5.3Sec.,180km/h,318Dm3,65kWh,480km
 EX30 (428 ch),4Sec.,180km/h,318Dm3,65kWh,460km
